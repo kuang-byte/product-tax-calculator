@@ -6,8 +6,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-
-public class CartItem {/**
+/**
  * This class represents the item you put into the {@link Cart} which includes
  * productId (refer to {@link Product}, variantId (refer to {@link Variant} and quantity.
  * <p>
@@ -16,6 +15,7 @@ public class CartItem {/**
  * @author Hao Kuang
  * @date 2018/05/13
  */
+public class CartItem {
 
     @SerializedName("product")
     @Expose
