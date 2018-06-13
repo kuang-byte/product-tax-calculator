@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 /**
  * This class is referred to the code from https://codereview.stackexchange.com/questions/64407/align-strings-for-output
- * It mocks the table structure with columns and rows which will automatically align text.
+ * It mocks the table structure with columns and rows which text inside will be automatically aligned.
  *
  * Code example:
  * <code>

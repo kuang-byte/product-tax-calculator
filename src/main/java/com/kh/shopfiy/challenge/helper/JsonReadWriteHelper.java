@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -70,14 +71,14 @@ public final class JsonReadWriteHelper {
     public static void loadDefaultProductsIntoStorage() {
         loadJsonArrayIntoStorage(DEFAULT_PRODUCTS_JSON_FILE_NAME, bufferedReader -> {
             Product[] productList = gson.fromJson(bufferedReader, Product[].class);
-            for (Product product : productList) {
+            Arrays.stream(productList).forEach(product -> {
                 if (!ProductsStorage.addProduct(product)) {
                     System.err.println(String.format("Product id = %s is ignored which has been already in the " +
                             "storage", product.getId()));
                 } else {
                     System.out.println(String.format("Product id = %s has been loaded successfully", product.getId()));
                 }
-            }
+            });
         });
     }
 
@@ -93,14 +94,14 @@ public final class JsonReadWriteHelper {
     public static void loadDefaultTaxesIntoStorage() {
         loadJsonArrayIntoStorage(DEFAULT_TAXS_JSON_FILE_NAME, bufferedReader -> {
             Tax[] taxList = gson.fromJson(bufferedReader, Tax[].class);
-            for (Tax tax : taxList) {
+            Arrays.stream(taxList).forEach(tax -> {
                 if (!TaxsStorage.addTax(tax)) {
                     System.err.println(String.format("Tax code = %s is ignored which has been already in the " +
                             "storage", tax.getCode()));
                 } else {
                     System.out.println(String.format("Tax code = %s has been loaded successfully", tax.getCode()));
                 }
-            }
+            });
         });
     }
 
@@ -110,6 +111,7 @@ public final class JsonReadWriteHelper {
      * @param fileName File name
      * @param consumer interface of providing ability to handle BufferedReader for different methods
      */
+
     private static void loadJsonArrayIntoStorage(String fileName, Consumer<BufferedReader> consumer) {
         BufferedReader br = null;
         try {
