@@ -18,7 +18,7 @@ public class App {
         JsonReadWriteHelper.loadDefaultTaxesIntoStorage();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // Load input into shopping cart
         if (Strings.isNullOrEmpty(args[0])) {
             System.out.println("Error: Cart Json (First input parameter) cannot be null or empty");

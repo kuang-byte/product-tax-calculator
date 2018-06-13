@@ -102,12 +102,11 @@ public class ReceiptGenerator {
         double price = cartItem.getQuantity() * variant.getPrice();
         double taxPrice = price * tax.getRate();
         subTotal += price;
-        taxCodeAmount.put(variant.getTaxCode(),
-                taxCodeAmount.getOrDefault(variant.getTaxCode(), 0.0d) + taxPrice);
+        taxCodeAmount.put(variant.getTaxCode(), taxCodeAmount.getOrDefault(variant.getTaxCode(),
+                0.0d) + taxPrice);
 
         receiptBuilder.addLine(String.valueOf(cartItem.getQuantity()),
-                product.getName() + " - " + variant.getSize(),
-                String.valueOf(variant.getTaxCode()),
+                product.getName() + " - " + variant.getSize(), String.valueOf(variant.getTaxCode()),
                 PRICE_DECIMAL_FORMAT.format(price));
     }
 
@@ -129,10 +128,8 @@ public class ReceiptGenerator {
     private void calculateTaxAmountEntry(Integer taxCode, Double amount) {
         Tax tax = TaxsStorage.getTaxByCode(taxCode);
         taxTotal += amount;
-        receiptBuilder.addLine("",
-                String.valueOf(taxCode) + "-" + tax.getName(),
-                PERCENTAGE_DECIMAL_FORMAT.format(tax.getRate()),
-                PRICE_DECIMAL_FORMAT.format(amount));
+        receiptBuilder.addLine("", String.valueOf(taxCode) + "-" + tax.getName(),
+                PERCENTAGE_DECIMAL_FORMAT.format(tax.getRate()), PRICE_DECIMAL_FORMAT.format(amount));
     }
 
     private void addColumnNames() {

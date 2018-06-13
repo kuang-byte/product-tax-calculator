@@ -30,7 +30,7 @@ import java.util.function.Consumer;
 public final class JsonReadWriteHelper {
 
     private static final String DEFAULT_PRODUCTS_JSON_FILE_NAME = "default_products.json";
-    private static final String DEFAULT_TAXS_JSON_FILE_NAME = "default_taxes.json";
+    private static final String DEFAULT_TAXES_JSON_FILE_NAME = "default_taxes.json";
     private static final Gson gson = new Gson();
 
     /**
@@ -92,7 +92,7 @@ public final class JsonReadWriteHelper {
      * If the tax code has been already inside the storage, the others will be ignored.
      */
     public static void loadDefaultTaxesIntoStorage() {
-        loadJsonArrayIntoStorage(DEFAULT_TAXS_JSON_FILE_NAME, bufferedReader -> {
+        loadJsonArrayIntoStorage(DEFAULT_TAXES_JSON_FILE_NAME, bufferedReader -> {
             Tax[] taxList = gson.fromJson(bufferedReader, Tax[].class);
             Arrays.stream(taxList).forEach(tax -> {
                 if (!TaxsStorage.addTax(tax)) {
