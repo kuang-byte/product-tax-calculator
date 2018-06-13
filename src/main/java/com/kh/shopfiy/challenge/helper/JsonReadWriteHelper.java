@@ -56,8 +56,7 @@ public final class JsonReadWriteHelper {
     public static Cart generateShoppingCartFromJson(String cartJson) throws JsonSyntaxException {
         Type founderListType = new TypeToken<ArrayList<CartItem>>() {
         }.getType();
-        List<CartItem> items = gson.fromJson(cartJson, founderListType);
-        return new Cart(items);
+        return new Cart(gson.fromJson(cartJson, founderListType));
     }
 
     /**
